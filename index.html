@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosso para sempre 💍</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Georgia", "Times New Roman", serif;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.9), transparent 32%),
+        linear-gradient(135deg, #fff0f5, #fbe4ec 48%, #f8d9e3);
+    color: #4b2632;
+}
+
+.card {
+    width: min(92%, 650px);
+    padding: 30px 20px;
+    position: relative;
+    z-index: 5;
+    animation: aparecer .9s ease;
+}
+
+img {
+    width: min(250px, 72vw);
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 12px 18px rgba(120,40,70,.16));
+}
+
+h1 {
+    margin: 5px 0 12px;
+    font-size: clamp(27px, 7vw, 40px);
+    line-height: 1.15;
+    color: #7b304d;
+}
+
+.subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #7d5964;
+    margin: 0 auto 22px;
+    max-width: 540px;
+    line-height: 1.6;
+}
+
+#mensagem-fuga {
+    min-height: 28px;
+    margin-bottom: 12px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #b33a5c;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+button {
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 34px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 7px 18px rgba(90,30,50,.18);
+    transition: transform .2s, box-shadow .2s;
+}
+
+button:hover { transform: translateY(-2px) scale(1.04); }
+
+#btn-yes {
+    background: linear-gradient(135deg, #b83b65, #8d2349);
+    color: white;
+}
+
+#btn-no {
+    background: #fff;
+    color: #9b526b;
+    border: 2px solid #e7b5c5;
+}
+
+.hidden { display: none !important; }
+
+#success-container {
+    width: min(92%, 650px);
+    padding: 25px 20px;
+    animation: aparecer 1s ease;
+}
+
+#success-container h1 {
+    font-size: clamp(29px, 7vw, 42px);
+}
+
+#success-container p {
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #654651;
+    max-width: 580px;
+    margin: auto;
+}
+
+.signature {
+    margin-top: 22px;
+    font-size: 21px;
+    color: #8d3452;
+    font-weight: bold;
+}
+
+#confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.fall {
+    position: absolute;
+    top: -10vh;
+    animation: cair linear forwards;
+}
+
+@keyframes cair {
+    to {
+        transform: translateY(115vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(.92) translateY(15px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.coracao {
+    position: fixed;
+    color: rgba(166, 54, 91, .18);
+    font-size: 28px;
+    animation: flutuar 7s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes flutuar {
+    0%,100% { transform: translateY(15px); opacity: .2; }
+    50% { transform: translateY(-25px); opacity: .55; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="coracao" style="left:8%;top:14%;">♡</div>
+<div class="coracao" style="right:10%;top:22%;animation-delay:2s;">♡</div>
+<div class="coracao" style="left:15%;bottom:15%;animation-delay:4s;">♡</div>
+<div class="coracao" style="right:16%;bottom:12%;animation-delay:1s;">♡</div>
+
+
+<audio id="musica" preload="auto">
+    <source src="Careless Whisper(MP3_320K).mp3" type="audio/mpeg">
+</audio>
+
+<div id="question-container" class="card">
+    <img src="https://i.ibb.co/R4bQmkZX/urso.gif" alt="Ursinho fofo">
+
+    <h1>💍 Você aceita se casar comigo?</h1>
+
+    <p class="subtitle">
+        Eu não quero apenas viver momentos ao seu lado...
+        quero construir uma vida inteira com você. ❤️
+    </p>
+
+    <p id="mensagem-fuga"></p>
+
+    <div class="buttons">
+        <button id="btn-yes">SIM! 💍❤️</button>
+        <button id="btn-no">NÃO 🙈</button>
+    </div>
+</div>
+
+<div id="success-container" class="hidden">
+    <img src="https://i.ibb.co/8gc7Cpwn/urso2.gif" alt="Ursinhos se abraçando">
+
+    <h1>ELA DISSE SIM! 💍❤️</h1>
+
+    <p>
+        Então é oficial... vou poder chamar você de minha noiva. 🥹❤️
+        <br><br>
+        Prometo caminhar ao seu lado, cuidar de você, dividir meus sonhos
+        e construir nossa família com muito amor, respeito, cumplicidade e fé.
+        <br><br>
+        Que esse seja apenas o começo do nosso para sempre.
+    </p>
+
+    <div class="signature">Eu escolheria você em todas as vidas. ❤️</div>
+    <p style="margin-top:16px;font-size:14px;color:#9b526b;">🎷 Agora deixa o sax tocar... 😂💍</p>
+    <p style="margin-top:16px;font-size:14px;color:#1a1df5;">Criado por Melck Samuel</p>
+</div>
+
+<div id="confetti-container"></div>
+
+<script>
+const btnYes = document.getElementById("btn-yes");
+const btnNo = document.getElementById("btn-no");
+const mensagem = document.getElementById("mensagem-fuga");
+const question = document.getElementById("question-container");
+const success = document.getElementById("success-container");
+const confetti = document.getElementById("confetti-container");
+
+const frases = [
+    "Tem certeza? 🥺",
+    "Pensa com carinho... ❤️",
+    "Esse botão NÃO está colaborando 😂",
+    "Olha o anel esperando... 💍",
+    "Você sabe que a resposta é SIM. 😌❤️",
+    "Não foge de mim não! 😂",
+    "Eu preparei tudo com amor... 🥹",
+    "Tenha calma moreno...",
+    "Última chance de dizer SIM! 💍"
+    
+];
+
+let tentativas = 0;
+
+btnNo.addEventListener("mouseover", fugir);
+btnNo.addEventListener("touchstart", fugir);
+
+function fugir(e) {
+    if (e) e.preventDefault();
+
+    tentativas++;
+    mensagem.textContent = frases[Math.min(tentativas - 1, frases.length - 1)];
+
+    const margem = 25;
+    const maxX = Math.max(0, window.innerWidth - btnNo.offsetWidth - margem * 2);
+    const maxY = Math.max(0, window.innerHeight - btnNo.offsetHeight - margem * 2);
+
+    btnNo.style.position = "fixed";
+    btnNo.style.left = (margem + Math.random() * maxX) + "px";
+    btnNo.style.top = (margem + Math.random() * maxY) + "px";
+}
+
+btnYes.addEventListener("click", () => {
+    const musica = document.getElementById("musica");
+    musica.currentTime = 0;
+    musica.play().catch(() => {
+        mensagem.textContent = "Toque na página para iniciar a música 🎶❤️";
+    });
+
+    question.classList.add("hidden");
+    success.classList.remove("hidden");
+    criarChuva();
+});
+
+function criarChuva() {
+    const simbolos = ["❤️", "💍", "💕", "✨", "🌸"];
+
+    for (let i = 0; i < 90; i++) {
+        const item = document.createElement("div");
+        item.className = "fall";
+        item.textContent = simbolos[Math.floor(Math.random() * simbolos.length)];
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.fontSize = (16 + Math.random() * 20) + "px";
+        item.style.animationDuration = (3 + Math.random() * 4) + "s";
+        item.style.animationDelay = Math.random() * 2 + "s";
+        confetti.appendChild(item);
+    }
+}
+</script>
+
+</body>
+</html>
